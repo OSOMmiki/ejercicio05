@@ -2,6 +2,7 @@ package es.cic.taller.ejercicio05;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
 
@@ -47,7 +48,7 @@ public class MyUI extends UI {
 	   	 	final DateTimeField fecha = new DateTimeField();
 	   	 	fecha.setValue(LocalDateTime.now());
 	   	 	
-	   	 ArrayList<String> paises = new ArrayList<String>();
+	   	 	List<String> paises = new ArrayList<String>();
 	        paises.add("España");
 	        paises.add("Francia");
 	        paises.add("Inglaterra");
@@ -72,15 +73,15 @@ public class MyUI extends UI {
 
 	            pais.setSelectedItem(nuevoPais);
 	        });
-	        Button button = new Button("Guarde los datos");
-	        button.addClickListener( e -> {
-	        	 perso = new Persona(nombre.getValue(),apellidos.getValue(), fecha.getValue(),pais.getValue());
-	        });
+	        Button button = new Button("Guardar datos");
+	        button.addClickListener( e -> 
+	        	 perso = new Persona(nombre.getValue(),apellidos.getValue(), fecha.getValue(),pais.getValue())
+	        );
 	        
-	        Button datos = new Button("Datos");
-	        datos.addClickListener(event ->{
-	        	Notification.show(perso.datos(),Type.TRAY_NOTIFICATION);
-	        });
+	        Button datos = new Button("Mostrar datos");
+	        datos.addClickListener(event ->
+	        	Notification.show(perso.datos(),Type.TRAY_NOTIFICATION)
+	        );
 	        
 	       
 	        Label[] etiquetas= {new Label("Nombre:"),new Label("Apellidos:"),new Label("Fecha:"),new Label("Pais:")};
@@ -122,7 +123,7 @@ public class MyUI extends UI {
 	                	sample.addComponent(cuadroTexto);
 	                	
 	                }
-	                sample.setRowExpandRatio(row, 4.0f);
+	                sample.setRowExpandRatio(row, 9.0f);
 	                sample.setColumnExpandRatio(col, 4.0f);
 	            }
 	        }

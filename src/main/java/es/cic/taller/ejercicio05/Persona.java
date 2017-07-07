@@ -19,6 +19,6 @@ public class Persona {
 	
 		public String datos() {
 			String sFecha = fecha.format(DateTimeFormatter.ofPattern( "dd MM yyyy"));
-			return String.format("%s %s estamos a %s en %s", nombre, apellidos, sFecha, pais);
+			return String.format(" %s %n %s %n estamos a %s %n en %s", nombre, apellidos, sFecha, pais);
 		}
 }
