@@ -1,6 +1,7 @@
 package es.cic.taller.ejercicio05;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 public class Persona {
@@ -17,6 +18,7 @@ public class Persona {
 		}
 	
 		public String datos() {
-			return (nombre + " " + apellidos + " " +fecha +" " + pais);
+			String sFecha = fecha.format(DateTimeFormatter.ofPattern( "dd MM yyyy"));
+			return String.format("%s %s estamos a %s en %s", nombre, apellidos, sFecha, pais);
 		}
 }

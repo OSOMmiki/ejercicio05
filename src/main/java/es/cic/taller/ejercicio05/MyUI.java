@@ -1,6 +1,7 @@
 package es.cic.taller.ejercicio05;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import javax.servlet.annotation.WebServlet;
 
@@ -45,22 +46,35 @@ public class MyUI extends UI {
 	        final TextField apellidos = new TextField();
 	   	 	final DateTimeField fecha = new DateTimeField();
 	   	 	fecha.setValue(LocalDateTime.now());
-	   	 	final TextField domicilio = new TextField();
-	   	 
-	        
 	   	 	
-	   	 	Component[] col2= {nombre,apellidos,fecha,domicilio};
+	   	 ArrayList<String> paises = new ArrayList<String>();
+	        paises.add("España");
+	        paises.add("Francia");
+	        paises.add("Inglaterra");
+
+	        final ComboBox<String> pais = new ComboBox<String>();
+	        pais.setItems(paises);
+	   	 	
+	   	 	Component[] col2= {nombre,apellidos,fecha,pais};
 	   	 	pintaTextField(nombre,"Introduzca nombre",30);
 	        
 	        pintaTextField(apellidos,"Introduzca apedillos",30);
 	        
-	        pintaTextField(domicilio,"Introduzca pais",15);
+		     
+	        pais.setPlaceholder("Pais no seleccionado");
+	        pais.setEmptySelectionAllowed(false);
+	        pais.setNewItemHandler(inputString -> {
+	        	
+	        	String nuevoPais = inputString;
+	            paises.add(nuevoPais);
+	           
+	            pais.setItems(paises);
 
-	        
-	        
+	            pais.setSelectedItem(nuevoPais);
+	        });
 	        Button button = new Button("Guarde los datos");
 	        button.addClickListener( e -> {
-	        	 perso = new Persona(nombre.getValue(),apellidos.getValue(), fecha.getValue(),domicilio.getValue());
+	        	 perso = new Persona(nombre.getValue(),apellidos.getValue(), fecha.getValue(),pais.getValue());
 	        });
 	        
 	        Button datos = new Button("Datos");
